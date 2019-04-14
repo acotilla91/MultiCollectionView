@@ -1,11 +1,6 @@
 use_frameworks!
+platform :ios, '10.0'
 
 target 'MultiCollectionView_Example' do
   pod 'MultiCollectionView', :path => '../'
-
-  target 'MultiCollectionView_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

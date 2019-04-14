@@ -1,0 +1,6 @@
+framework module Pods_MultiCollectionView_Tests {
+  umbrella header "Pods-MultiCollectionView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

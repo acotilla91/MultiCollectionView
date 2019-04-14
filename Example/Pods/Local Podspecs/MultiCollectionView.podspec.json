@@ -1,0 +1,22 @@
+{
+  "name": "MultiCollectionView",
+  "version": "0.1.0",
+  "summary": "A short description of MultiCollectionView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/acotilla91/MultiCollectionView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "acotilla91": "alejandro@floatleft.tv"
+  },
+  "source": {
+    "git": "https://github.com/acotilla91/MultiCollectionView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MultiCollectionView/Classes/**/*"
+}
