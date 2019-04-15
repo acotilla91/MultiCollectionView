@@ -1,22 +1,25 @@
 {
   "name": "MultiCollectionView",
-  "version": "0.1.0",
-  "summary": "A short description of MultiCollectionView.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.0",
+  "summary": "UICollectionView capable to scroll in both directions, vertically and horizontally.",
+  "description": "MultiCollectionView allows for multidirectional scrolling (horizontal and vertical scrolling) on iOS or tvOS, similar to Netflix and most other media consumption apps out there.",
   "homepage": "https://github.com/acotilla91/MultiCollectionView",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "acotilla91": "alejandro@floatleft.tv"
+    "Alejandro Cotilla": "acotilla91@gmail.com"
   },
   "source": {
     "git": "https://github.com/acotilla91/MultiCollectionView.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
+  "social_media_url": "https://twitter.com/acotilla91",
   "platforms": {
-    "ios": "8.0"
+    "ios": "11.0",
+    "tvos": "11.0"
   },
+  "swift_version": "5.0",
   "source_files": "MultiCollectionView/Classes/**/*"
 }

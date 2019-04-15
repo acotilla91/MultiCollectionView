@@ -1,5 +1,5 @@
 PODS:
-  - MultiCollectionView (0.1.0)
+  - MultiCollectionView (1.0.0)
 
 DEPENDENCIES:
   - MultiCollectionView (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MultiCollectionView: 1b24cc574044a9c528efad71b4bc101c7349855a
+  MultiCollectionView: 3c58efd3734b3e3ee6fe8cec562adbfe4433a294
 
-PODFILE CHECKSUM: d6982d7cfeeee380c5c8ed4b57e48097e41f6a4d
+PODFILE CHECKSUM: 635ee621a8b6db03904dd36e0f1124d47cdaa733
 
 COCOAPODS: 1.6.1
