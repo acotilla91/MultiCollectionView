@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'MultiCollectionView'
   s.version          = '1.0.0'
-  s.summary          = 'UICollectionView capable to scroll in both directions, vertically and horizontally.'
+  s.summary          = 'UICollectionView capable of scrolling in both directions, vertically and horizontally.'
   
   s.description      = <<-DESC
-  MultiCollectionView allows for multidirectional scrolling (horizontal and vertical scrolling) on iOS or tvOS, similar to Netflix and most other media consumption apps out there.
+  MultiCollectionView allows for multidirectional scrolling (horizontal and vertical scrolling), similar to Netflix and most other media consumption apps out there.
   DESC
   
   s.homepage         = 'https://github.com/acotilla91/MultiCollectionView'
@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/acotilla91'
   
   s.ios.deployment_target = '11.0'
-  s.tvos.deployment_target = '11.0'
   s.swift_version = '5.0'
   
   s.source_files = 'MultiCollectionView/Classes/**/*'

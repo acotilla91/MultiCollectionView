@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/MultiCollectionView.svg?style=flat)](https://cocoapods.org/pods/MultiCollectionView)
 [![Platform](https://img.shields.io/cocoapods/p/MultiCollectionView.svg?style=flat)](https://cocoapods.org/pods/MultiCollectionView)
 
-MultiCollectionView allows for multidirectional scrolling (horizontal and vertical scrolling) on iOS or tvOS, similar to Netflix and most other media consumption apps out there.
+MultiCollectionView allows for multidirectional scrolling (horizontal and vertical scrolling), similar to Netflix and most other media consumption apps out there.
 
 ## Example
 
