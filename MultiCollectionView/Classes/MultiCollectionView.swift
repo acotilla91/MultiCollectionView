@@ -216,7 +216,7 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
             let multiCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellIndentifier, for: indexPath) as! MultiCollectionViewCell
             multiCollectionViewCell.configure(with: cellClassesReuseRegistry, nibsReuseRegistry: cellNibsReuseRegistry, listener: self)
             multiCollectionViewCell.section = indexPath.section
-
+            
             // Get saved offset before resetting it
             let savedOffset = sectionsOffset[indexPath.section]
             
@@ -231,6 +231,9 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
             if let offset = savedOffset {
                 multiCollectionViewCell.collectionViewRow.setContentOffset(offset, animated: false)
             }
+            
+            // Disable scrolling until the cell appears
+            multiCollectionViewCell.collectionViewRow.isScrollEnabled = false
             
             // Ensure the proper cells are drawn after the reuse
             multiCollectionViewCell.collectionViewRow.reloadData()
@@ -248,6 +251,13 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
         }
         
         return UICollectionViewCell()
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let multiCollectionViewCell = cell as? MultiCollectionViewCell {
+            // Re-allow scrolling now that the cell is about to appear
+            multiCollectionViewCell.collectionViewRow.isScrollEnabled = true
+        }
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -343,17 +353,26 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let direction: UICollectionView.ScrollDirection = scrollView == tableCollectionView ? .vertical : .horizontal
         
+        if direction == .horizontal {
+            let collectionViewRow = scrollView as! MultiCollectionViewRow
+            let savedOffset = sectionsOffset[collectionViewRow.section] ?? .zero
+            
+            if collectionViewRow.isScrollEnabled {
+                // Save offset to restore it once the cell gets reused
+                sectionsOffset[collectionViewRow.section] = collectionViewRow.contentOffset
+            }
+            else if !collectionViewRow.contentOffset.equalTo(savedOffset) {
+                // Reject new content offset and restore previous one if content offset changes are not allowed.
+                collectionViewRow.contentOffset = savedOffset
+            }
+        }
+        
+        // Notify delegate
         if let collectionViewRow = scrollView as? MultiCollectionViewRow {
             delegate?.collectionViewDidScrollHorizontally?(self, toOffset: scrollView.contentOffset, inSection: collectionViewRow.section)
         }
         else {
             delegate?.collectionViewDidScrollVertically?(self, toOffset: scrollView.contentOffset)
-        }
-
-        // Save offset to restore it once the cell gets reused
-        if direction == .horizontal {
-            let collectionViewRow = scrollView as! MultiCollectionViewRow
-            sectionsOffset[collectionViewRow.section] = collectionViewRow.contentOffset
         }
     }
     

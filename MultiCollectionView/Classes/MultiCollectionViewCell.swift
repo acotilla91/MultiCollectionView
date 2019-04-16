@@ -52,4 +52,10 @@ public class MultiCollectionViewCell: UICollectionViewCell {
 
         collectionViewRow.frame = contentView.bounds
     }
+    
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        
+        collectionViewRow.setContentOffset(collectionViewRow.contentOffset, animated: false)
+    }
 }
