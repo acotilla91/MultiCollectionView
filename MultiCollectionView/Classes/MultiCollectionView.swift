@@ -17,7 +17,10 @@ import UIKit
     @objc optional func collectionView(_ collectionView: MultiCollectionView, referenceSizeForFooterInSection section: Int) -> CGSize
     @objc optional func collectionView(_ collectionView: MultiCollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     @objc optional func collectionView(_ collectionView: MultiCollectionView, didSelectItemAt indexPath: IndexPath)
+    
+    #if os(iOS)
     @objc optional func collectionView(_ collectionView: MultiCollectionView, shouldEnablePagingAt section: Int) -> Bool
+    #endif
     
     @objc optional func collectionViewDidScrollHorizontally(_ collectionView: MultiCollectionView, toOffset offset: CGPoint, inSection section: Int)
     @objc optional func collectionViewDidScrollVertically(_ collectionView: MultiCollectionView, toOffset offset: CGPoint)
@@ -224,8 +227,10 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
             multiCollectionViewCell.collectionViewRow.setContentOffset(.zero, animated: false)
             
             // Ask delegate for paging configuration
+            #if os(iOS)
             let pagingEnabled = delegate?.collectionView?(self, shouldEnablePagingAt: indexPath.section) ?? false
             multiCollectionViewCell.collectionViewRow.isPagingEnabled = pagingEnabled
+            #endif
             
             // Apply saved offset
             if let offset = savedOffset {
@@ -346,6 +351,11 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
     
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         lastSelectedIndexPath = nil
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        // Forward focus to the actual cells
+        return collectionView != self.tableCollectionView
     }
     
     // MARK: - UIScrollViewDelegate -
