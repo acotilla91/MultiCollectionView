@@ -29,22 +29,6 @@ import UIKit
     @objc optional func collectionViewWillEndDraggingVertically(_ collectionView: MultiCollectionView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
 }
 
-extension UIView {
-    /// Stretches the input view to the UIView frame using Auto-layout
-    ///
-    /// - Parameter view: The view to stretch.
-    func stretch(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: topAnchor),
-            view.leftAnchor.constraint(equalTo: leftAnchor),
-            view.rightAnchor.constraint(equalTo: rightAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-}
-
 public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     public weak var delegate: MultiCollectionViewDelegate?
@@ -84,7 +68,15 @@ public class MultiCollectionView: UIView, UICollectionViewDelegate, UICollection
         tableCollectionView.dataSource = self
         tableCollectionView.delegate = self
         addSubview(tableCollectionView)
-        stretch(view: tableCollectionView)
+        
+        // Setup constraints
+        tableCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableCollectionView.topAnchor.constraint(equalTo: topAnchor),
+            tableCollectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            tableCollectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            tableCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         tableCollectionView.register(MultiCollectionViewCell.self, forCellWithReuseIdentifier: collectionViewCellIndentifier)
     }
