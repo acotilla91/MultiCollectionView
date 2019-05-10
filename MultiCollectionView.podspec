@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MultiCollectionView'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'UICollectionView capable of scrolling in both directions, vertically and horizontally.'
   
   s.description      = <<-DESC
