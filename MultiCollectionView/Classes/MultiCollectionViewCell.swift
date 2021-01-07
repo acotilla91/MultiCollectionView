@@ -33,8 +33,8 @@ public class MultiCollectionViewCell: UICollectionViewCell {
         collectionViewRow.showsHorizontalScrollIndicator = false
         contentView.addSubview(collectionViewRow)
         
-        for (key, value) in classesReuseRegistry {
-            collectionViewRow.register(value, forCellWithReuseIdentifier: key)
+        for classReuseInfo in classesReuseRegistry {
+            collectionViewRow.register(classReuseInfo.value, forCellWithReuseIdentifier: classReuseInfo.key)
         }
         
         for (key, value) in nibsReuseRegistry {
