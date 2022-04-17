@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public protocol MultiCollectionViewDelegate: class {
+@objc public protocol MultiCollectionViewDelegate: AnyObject {
     func numberOfSections(in collectionView: MultiCollectionView) -> Int
     func collectionView(_ collectionView: MultiCollectionView, numberOfItemsInSection section: Int) -> Int
     func collectionView(_ collectionView: MultiCollectionView, reuseIdentifierForCellAt indexPath: IndexPath) -> String
